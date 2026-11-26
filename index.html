@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A simple student access portal demo with dashboard, attendance, results and timetable.">
+  <title>Student Access Portal</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+  <main id="login-view" class="login-page">
+    <form id="login-form" class="login-card">
+      <div class="brand-mark">🎓</div>
+      <h1>Student Portal</h1>
+      <p class="muted">Sign in to access your academic dashboard</p>
+      <label for="student-id">Student ID</label>
+      <input id="student-id" name="student-id" type="text" placeholder="Enter student ID" autocomplete="username" required>
+      <label for="password">Password</label>
+      <input id="password" name="password" type="password" placeholder="Enter password" autocomplete="current-password" required>
+      <button class="button button-primary full-width" type="submit">Sign in</button>
+      <p id="login-error" class="error-message" role="alert" aria-live="polite"></p>
+      <p class="demo-hint">Demo login: <strong>student</strong> / <strong>1234</strong></p>
+    </form>
+  </main>
+
+  <div id="app-view" class="app-shell" hidden>
+    <aside class="sidebar">
+      <a class="brand" href="#dashboard" aria-label="Student Portal home">
+        <span class="brand-icon">🎓</span><span>Student Portal</span>
+      </a>
+      <p class="sidebar-label">MENU</p>
+      <nav id="main-nav" class="nav-list" aria-label="Main navigation">
+        <button class="nav-link active" data-page="dashboard">▦ <span>Dashboard</span></button>
+        <button class="nav-link" data-page="profile">♙ <span>My Profile</span></button>
+        <button class="nav-link" data-page="attendance">▤ <span>Attendance</span></button>
+        <button class="nav-link" data-page="results">▣ <span>Results</span></button>
+        <button class="nav-link" data-page="timetable">▦ <span>Timetable</span></button>
+        <button class="nav-link" data-page="announcements">◉ <span>Announcements</span></button>
+      </nav>
+      <div class="sidebar-bottom">
+        <p>Academic year 2026–27</p>
+        <button id="logout-button" class="nav-link logout-link">↪ <span>Log out</span></button>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">STUDENT SPACE</p>
+          <h1 id="page-heading">Dashboard</h1>
+        </div>
+        <div class="user-chip"><span class="avatar">S</span><span id="header-student-name">Student</span></div>
+      </header>
+
+      <section id="page-dashboard" class="page-section">
+        <div class="welcome-banner">
+          <div><p class="eyebrow light">WELCOME BACK</p><h2>Hello, Student 👋</h2><p>Here’s a quick overview of your academic progress.</p></div>
+          <div class="banner-decoration">✦</div>
+        </div>
+        <div class="stats-grid">
+          <article class="stat-card"><span class="stat-icon blue">▤</span><p>Attendance</p><h3>85%</h3><small>Overall attendance</small></article>
+          <article class="stat-card"><span class="stat-icon violet">▣</span><p>Current CGPA</p><h3>8.5</h3><small>Academic performance</small></article>
+          <article class="stat-card"><span class="stat-icon green">▦</span><p>Enrolled subjects</p><h3>6</h3><small>Current semester</small></article>
+          <article class="stat-card"><span class="stat-icon orange">◷</span><p>Pending tasks</p><h3>3</h3><small>Assignments and activities</small></article>
+        </div>
+        <div class="content-grid">
+          <article class="surface">
+            <div class="section-heading"><h2>Recent announcements</h2><button class="text-button" data-go="announcements">View all</button></div>
+            <ul class="announcement-list">
+              <li><span class="bullet blue-bullet"></span><div><strong>Internal examination schedule</strong><p>Check the notice board for the updated schedule.</p><small>Academic Office · 2 days ago</small></div></li>
+              <li><span class="bullet green-bullet"></span><div><strong>Assignment submission</strong><p>Submit pending assignments before the deadline.</p><small>Department · 4 days ago</small></div></li>
+              <li><span class="bullet orange-bullet"></span><div><strong>Semester registration</strong><p>Semester registration information is now available.</p><small>Registrar · 1 week ago</small></div></li>
+            </ul>
+          </article>
+          <article class="surface">
+            <div class="section-heading"><h2>Today’s classes</h2></div>
+            <div class="class-item"><span class="time-pill">09:00</span><div><strong>Mathematics</strong><p>Room 204 · Lecture</p></div></div>
+            <div class="class-item"><span class="time-pill">10:00</span><div><strong>Programming</strong><p>Computer Lab 1</p></div></div>
+            <div class="class-item"><span class="time-pill">11:00</span><div><strong>Artificial Intelligence</strong><p>Room 305 · Lecture</p></div></div>
+          </article>
+        </div>
+      </section>
+
+      <section id="page-profile" class="page-section" hidden>
+        <article class="surface">
+          <div class="section-heading"><h2>Student profile</h2><span class="status-badge">Active</span></div>
+          <div class="profile-header"><div class="profile-avatar">S</div><div><h3>Student Name</h3><p class="muted">Computer Science · Second Year</p></div></div>
+          <div class="details-grid">
+            <div><small>Student ID</small><strong>2026CS001</strong></div>
+            <div><small>Email</small><strong>student@college.edu</strong></div>
+            <div><small>Department</small><strong>Computer Science</strong></div>
+            <div><small>Academic year</small><strong>2026–27</strong></div>
+          </div>
+        </article>
+      </section>
+
+      <section id="page-attendance" class="page-section" hidden>
+        <article class="surface">
+          <div class="section-heading"><h2>Attendance details</h2><span class="status-badge">Overall: 85%</span></div>
+          <div class="table-wrap"><table><thead><tr><th>Subject</th><th>Classes attended</th><th>Attendance</th></tr></thead><tbody>
+            <tr><td>Mathematics</td><td>45 / 50</td><td><span class="table-value">90%</span></td></tr>
+            <tr><td>Programming</td><td>42 / 50</td><td><span class="table-value">84%</span></td></tr>
+            <tr><td>Database Systems</td><td>40 / 50</td><td><span class="table-value">80%</span></td></tr>
+            <tr><td>Computer Networks</td><td>44 / 50</td><td><span class="table-value">88%</span></td></tr>
+            <tr><td>Artificial Intelligence</td><td>41 / 50</td><td><span class="table-value">82%</span></td></tr>
+          </tbody></table></div>
+        </article>
+      </section>
+
+      <section id="page-results" class="page-section" hidden>
+        <article class="surface">
+          <div class="section-heading"><h2>Examination results</h2><span class="status-badge">Semester 3</span></div>
+          <div class="table-wrap"><table><thead><tr><th>Subject</th><th>Marks</th><th>Grade</th><th>Result</th></tr></thead><tbody>
+            <tr><td>Mathematics</td><td>85 / 100</td><td>A</td><td class="pass">Pass</td></tr>
+            <tr><td>Programming</td><td>92 / 100</td><td>A+</td><td class="pass">Pass</td></tr>
+            <tr><td>Database Systems</td><td>78 / 100</td><td>B+</td><td class="pass">Pass</td></tr>
+            <tr><td>Computer Networks</td><td>88 / 100</td><td>A</td><td class="pass">Pass</td></tr>
+            <tr><td>Artificial Intelligence</td><td>90 / 100</td><td>A+</td><td class="pass">Pass</td></tr>
+          </tbody></table></div>
+        </article>
+      </section>
+
+      <section id="page-timetable" class="page-section" hidden>
+        <article class="surface">
+          <div class="section-heading"><h2>Weekly timetable</h2><span class="status-badge">Semester 3</span></div>
+          <div class="table-wrap"><table><thead><tr><th>Day</th><th>09:00–10:00</th><th>10:00–11:00</th><th>11:00–12:00</th></tr></thead><tbody>
+            <tr><td>Monday</td><td>Mathematics</td><td>Programming</td><td>AI</td></tr>
+            <tr><td>Tuesday</td><td>Database</td><td>Networks</td><td>Mathematics</td></tr>
+            <tr><td>Wednesday</td><td>AI</td><td>Mathematics</td><td>Programming</td></tr>
+            <tr><td>Thursday</td><td>Networks</td><td>Database</td><td>AI</td></tr>
+            <tr><td>Friday</td><td>Programming</td><td>Mathematics</td><td>Database</td></tr>
+          </tbody></table></div>
+        </article>
+      </section>
+
+      <section id="page-announcements" class="page-section" hidden>
+        <article class="surface">
+          <div class="section-heading"><h2>College announcements</h2></div>
+          <ul class="announcement-list">
+            <li><span class="bullet blue-bullet"></span><div><strong>Internal examinations</strong><p>Internal examinations begin next month. The detailed schedule will be shared by your department.</p><small>Academic Office · 2 days ago</small></div></li>
+            <li><span class="bullet green-bullet"></span><div><strong>Cultural fest registrations</strong><p>Registrations are open for the annual college cultural fest.</p><small>Student Affairs · 4 days ago</small></div></li>
+            <li><span class="bullet orange-bullet"></span><div><strong>Assignment submission</strong><p>Submit pending assignments to the respective faculty members before Friday.</p><small>Department · 1 week ago</small></div></li>
+            <li><span class="bullet violet-bullet"></span><div><strong>Semester registration</strong><p>Students can check semester registration details at the academic office.</p><small>Registrar · 1 week ago</small></div></li>
+          </ul>
+        </article>
+      </section>
+      <footer class="footer">Student Access Portal · Demo project · Sample data only</footer>
+    </main>
+  </div>
+</body>
+</html>
